@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomoc C# na kolokwium</title>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <h1>📘 C# - podstawy</h1>
+
+  <div class="section">
+    <h2>🔹 Struktura programu</h2>
+    <pre>
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello World");
+    }
+}
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Podstawowe typy danych</h2>
+    <pre>
+int liczba = 10;
+double przecinek = 3.14;
+bool prawda = true;
+string tekst = "Cześć";
+char znak = 'A';
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Warunki i pętle</h2>
+    <pre>
+if (x > 0) { ... }
+else { ... }
+
+for (int i = 0; i < 10; i++) { ... }
+while (warunek) { ... }
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Metody</h2>
+    <pre>
+static int Dodaj(int a, int b)
+{
+    return a + b;
+}
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Operacje na plikach (System.IO)</h2>
+    <pre>
+using System.IO;
+
+// Wczytanie linii do tablicy
+string[] linie = File.ReadAllLines("Nowy.txt");
+foreach (string linia in linie)
+{
+    Console.WriteLine(linia);
+}
+
+// Kopiowanie pliku
+File.Copy("Nowy.txt", "Nowy_kopia.txt", true);
+
+// Usuwanie pliku jeśli istnieje
+if (File.Exists("Nowy_kopia.txt"))
+{
+    File.Delete("Nowy_kopia.txt");
+}
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Obsługa wyjątków</h2>
+    <pre>
+try
+{
+    // coś ryzykownego
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Klasy i obiekty</h2>
+    <pre>
+class Osoba
+{
+    public string Imie;
+
+    public void Przywitaj()
+    {
+        Console.WriteLine($"Cześć, jestem {Imie}");
+    }
+}
+
+Osoba o = new Osoba();
+o.Imie = "Ania";
+o.Przywitaj();
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Katalogi (Directory i DirectoryInfo)</h2>
+    <pre>
+using System.IO;
+
+string sciezka = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "WdP_Zadanie12.1");
+
+if (!Directory.Exists(sciezka))
+{
+    Directory.CreateDirectory(sciezka);
+    Console.WriteLine("Utworzono katalog");
+}
+else
+{
+    Console.WriteLine("Katalog już istnieje");
+}
+
+DirectoryInfo info = new DirectoryInfo(sciezka);
+if (info.Exists)
+{
+    Console.WriteLine($"Data utworzenia: {info.CreationTime}");
+    Console.WriteLine($"Ostatni dostęp: {info.LastAccessTime}");
+    Console.WriteLine($"Dysk: {Path.GetPathRoot(info.FullName)}");
+    Console.WriteLine($"Macierzysty: {info.Parent}");
+    Console.WriteLine($"Pełna ścieżka: {info.FullName}");
+}
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Przydatne metody do zadań z kolokwium</h2>
+    <pre>
+// 📁 Pliki - File
+if (File.Exists("Nowy.txt"))
+{
+    string[] linie = File.ReadAllLines("Nowy.txt");  // odczyt do tablicy
+    foreach (string linia in linie)
+        Console.WriteLine(linia);
+
+    File.Copy("Nowy.txt", "Nowy_kopia.txt", true);    // kopia
+    File.Delete("Nowy_kopia.txt");                    // usunięcie
+}
+else
+{
+    Console.WriteLine("Plik nie istnieje!");
+}
+
+// 📂 Katalog - Directory
+string katalog = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+    "WdP_Zadanie12.1");
+
+if (!Directory.Exists(katalog))
+{
+    Directory.CreateDirectory(katalog);
+    Console.WriteLine("Utworzono katalog.");
+}
+else
+{
+    Console.WriteLine("Katalog już istnieje.");
+}
+
+// 📊 Informacje o katalogu - DirectoryInfo
+DirectoryInfo dir = new DirectoryInfo(katalog);
+if (dir.Exists)
+{
+    Console.WriteLine($"Data utworzenia: {dir.CreationTime}");
+    Console.WriteLine($"Ostatni dostęp: {dir.LastAccessTime}");
+    Console.WriteLine($"Dysk: {Path.GetPathRoot(dir.FullName)}");
+    Console.WriteLine($"Katalog macierzysty: {dir.Parent}");
+    Console.WriteLine($"Pełna ścieżka: {dir.FullName}");
+}
+    </pre>
+  </div>
+<footer>
+    &copy; 2025 <a href="https://github.com/kdominik777/notatki/blob/main/siema.txt" target="blank">-</a> Wszelkie prawa zastrzezone.
+</footer>
+</body>
+</html>
